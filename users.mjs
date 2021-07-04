@@ -7,27 +7,27 @@ let users = loadJson.sync('./users.json');
 
 
 
-usersRoute.get('/users', (req, res) => {
+usersRoute.get('/', (req, res) => {
 
     res.send(users)
 });
 
-usersRoute.get('/users/:id', (req, res) => {
+usersRoute.get('/:id', (req, res) => {
     const [user] = users.filter((user) => parseInt(req.params.id) === user.id);
     res.send(user);
 });
 
-usersRoute.post('/users', (req, res) => {
+usersRoute.post('/', (req, res) => {
     users.push(req.body);
     res.send('adding ok');
 });
 
-usersRoute.put('/users/:id', (req, res) => {
+usersRoute.put('/:id', (req, res) => {
     users[users.findIndex((user) => parseInt(req.params.id) === user.id)] = req.body;
     res.send('update ok');
 });
 
-usersRoute.delete('/users/:id', (req, res) => {
+usersRoute.delete('/:id', (req, res) => {
     users = users.filter((user) => parseInt(req.params.id) !== user.id);
     res.send('deleat ok');
 })
